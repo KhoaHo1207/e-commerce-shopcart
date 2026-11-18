@@ -1,10 +1,12 @@
 "use client";
 
 import { headerData } from "@/constants/data";
+import { useOutsideClick } from "@/hooks";
 import { X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./logo";
+import SocialMedia from "./social-media";
 
 interface SideMenuProps {
   isOpen: boolean;
@@ -13,6 +15,7 @@ interface SideMenuProps {
 
 export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
   const pathname = usePathname();
+  const sidebarRef = useOutsideClick;
   return (
     <div
       className={`fixed inset-y-0 left-0 z-50 w-full bg-black/50 shadow-xl ${isOpen ? "translate-x-0" : "-translate-x-full"} hoverEffect`}
@@ -39,6 +42,8 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             </Link>
           ))}
         </div>
+
+        <SocialMedia />
       </div>
     </div>
   );
